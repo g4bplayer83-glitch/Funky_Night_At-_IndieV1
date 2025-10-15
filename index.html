@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VS IMPOSTOR - Funky Night</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #8a2be2; /* Violet */
+            --secondary-color: #1e90ff; /* Bleu */
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --text-color: #ffffff;
+            --accent-color: #ff00ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(138, 43, 226, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(30, 144, 255, 0.1) 0%, transparent 20%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: rgba(10, 10, 10, 0.9);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--primary-color);
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.8rem;
+            color: var(--text-color);
+            text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--secondary-color);
+            margin-right: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+            background-color: rgba(138, 43, 226, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(30, 144, 255, 0.2));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+            animation: pulse 10s infinite linear;
+        }
+
+        @keyframes pulse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hero h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+            text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--secondary-color);
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.6);
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            background-color: rgba(18, 18, 18, 0.7);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+        }
+
+        .section h2 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            text-shadow: 0 0 5px rgba(138, 43, 226, 0.5);
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature {
+            background: rgba(30, 30, 30, 0.7);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(30, 144, 255, 0.3);
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(30, 144, 255, 0.3);
+        }
+
+        .feature h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background-color: var(--darker-bg);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 2px solid var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                margin-right: 0;
+                margin-bottom: 1rem;
+                font-size: 1.5rem;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">VS IMPOSTOR</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#discord">Discord</a></li>
+                <li><a href="#downloads">Downloads</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#credits">Credits</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <h1>VS IMPOSTOR WEEK 1 IS OUT NOW!</h1>
+        <p>Welcome to VS IMPOSTOR's Official website! This website functions as an all-purpose hub for VS IMPOSTOR information and downloads.</p>
+        <a href="#downloads" class="cta-button">DOWNLOAD NOW</a>
+    </section>
+
+    <div class="content">
+        <section class="section" id="about">
+            <h2>ABOUT VS IMPOSTOR</h2>
+            <p>As of now, only the Downloads and Credits sections are in a complete* state, and the Credits and Gallery will be updated to completion over time.</p>
+            <p>We hope you enjoy your stay! Website updates will be semi-frequent and will be posted on the Clovifos socials.</p>
+        </section>
+
+        <section class="section" id="features">
+            <h2>FEATURES</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>NEW CHARACTERS</h3>
+                    <p>Experience new characters with unique abilities and animations.</p>
+                </div>
+                <div class="feature">
+                    <h3>ORIGINAL SONGS</h3>
+                    <p>Enjoy brand new tracks composed specifically for this mod.</p>
+                </div>
+                <div class="feature">
+                    <h3>CHALLENGING GAMEPLAY</h3>
+                    <p>Test your rhythm skills with new chart patterns and difficulties.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="downloads">
+            <h2>DOWNLOADS</h2>
+            <p>Download the latest version of VS IMPOSTOR here:</p>
+            <div style="margin-top: 1.5rem;">
+                <a href="#" class="cta-button">VS IMPOSTOR WEEK 1</a>
+            </div>
+            <p style="margin-top: 1rem;"><small>*Requires Friday Night Funkin' base game</small></p>
+        </section>
+
+        <section class="section" id="gallery">
+            <h2>GALLERY</h2>
+            <p>Gallery section coming soon! Check back later for screenshots and artwork.</p>
+            <!-- Placeholder for future images -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                <div style="background: rgba(30, 30, 30, 0.7); height: 150px; border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px dashed rgba(138, 43, 226, 0.5);">
+                    <span>Image Placeholder</span>
+                </div>
+                <div style="background: rgba(30, 30, 30, 0.7); height: 150px; border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px dashed rgba(138, 43, 226, 0.5);">
+                    <span>Image Placeholder</span>
+                </div>
+                <div style="background: rgba(30, 30, 30, 0.7); height: 150px; border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px dashed rgba(138, 43, 226, 0.5);">
+                    <span>Image Placeholder</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="credits">
+            <h2>CREDITS</h2>
+            <p>VS IMPOSTOR is created by:</p>
+            <ul style="margin-left: 2rem; margin-top: 1rem;">
+                <li>Clovifos - Main Developer</li>
+                <li>ArtistName - Character Design</li>
+                <li>ComposerName - Music Production</li>
+                <li>OtherContributors - Additional Support</li>
+            </ul>
+            <p style="margin-top: 1rem;">Special thanks to the Friday Night Funkin' community for their support!</p>
+        </section>
+    </div>
+
+    <footer>
+        <div class="social-links">
+            <a href="#">Discord</a>
+            <a href="#">Twitter</a>
+            <a href="#">YouTube</a>
+            <a href="#">GameBanana</a>
+        </div>
+        <p>&copy; 2023 VS IMPOSTOR Mod. Friday Night Funkin' is property of NinjaMuffin99.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add active class to current section in navigation
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.section, .hero');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
